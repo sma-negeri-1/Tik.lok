@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentasi Harian</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .folder {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .folder:hover {
+            background-color: #333;
+        }
+        .folder svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .folder-label {
+            font-size: 18px;
+        }
+        #contentArea img, #contentArea video {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #FFA000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #ff8f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Documentasi Harian</h1>
+        <div id="dynamicFolders"></div>
+        <div id="contentArea" class="hidden"></div>
+        <button onclick="goBack()" class="back-button">Kembali</button>
+    </div>
+
+    <script>
+        // Data untuk folder "Documentasi Harian"
+        const documentasiHarianFolders = [
+            { date: "12-10-2024", label: "Sab, 12-10-2024", image: "image1.jpg", video: "video1.mp4" },
+            { date: "19-10-2024", label: "Sab, 19-10-2024", image: "image2.jpg", video: "video2.mp4" },
+            { date: "26-10-2024", label: "Sab, 26-10-2024", image: "image3.jpg", video: "video3.mp4" },
+            { date: "02-11-2024", label: "Sab, 02-11-2024", image: "image4.jpg", video: "video4.mp4" },
+            { date: "09-11-2024", label: "Sab, 09-11-2024", image: "image5.jpg", video: "video5.mp4" }
+        ];
+
+        documentasiHarianFolders.forEach(folder => {
+            const folderDiv = document.createElement('div');
+            folderDiv.className = 'folder';
+            folderDiv.onclick = () => showContent(folder.date, folder.image, folder.video);
+            folderDiv.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                </svg>
+                <span class="folder-label">${folder.label}</span>
+            `;
+            document.getElementById("dynamicFolders").appendChild(folderDiv);
+        });
+
+        function showContent(date, image, video) {
+            const contentArea = document.getElementById("contentArea");
+            contentArea.innerHTML = `<h2>Konten untuk ${date}</h2>
+                <img src="${image}" alt="Gambar untuk ${date}" onclick="openModal(this.src)">
+                <video controls src="${video}"></video>`;
+            contentArea.classList.remove("hidden");
+        }
+
+        function openModal(src) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <span class="modal-close" onclick="closeModal(this)">×</span>
+                <img class="modal-content" src="${src}" alt="Gambar Besar">
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+        }
+
+        function closeModal(element) {
+            const modal = element.parentElement;
+            modal.style.display = 'none';
+            document.body.removeChild(modal);
+        }
+
+        function goBack() {
+            window.location.href = 'Sejarah.html';
+        }
+    </script>
+</body>
+</html>

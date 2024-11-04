@@ -1,0 +1,39 @@
+<table>
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Hari/Tgl</th>
+            <th>Puji-Pujian</th>
+            <th>Liturgi</th>
+            <th>Persembahan</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Senin, 1 Jan 2024</td>
+            <td>Puji Tuhan</td>
+            <td>Liturgi I</td>
+            <td>10.000</td>
+            <td class="check">✓</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Selasa, 2 Jan 2024</td>
+            <td>Hymne Damai</td>
+            <td>Liturgi II</td>
+            <td>20.000</td>
+            <td class="cross">✖</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Rabu, 3 Jan 2024</td>
+            <td>Nyanyian Syukur</td>
+            <td>Liturgi III</td>
+            <td>15.000</td>
+            <td class="check">✓</td>
+        </tr>
+        <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
+    </tbody>
+</table>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+        .info-message {
+            background-color: #ffeb3b; /* Warna kuning muda */
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">Form Taekwondo</h1>
+            </div>
+        </div>
+    </section>
+    <form id="form" class="container m-4 pl-4" method="POST">
+        <div class="field">
+            <label class="label">Nama Lengkap</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    placeholder="Nama Lengkap Anda"
+                    name="Nama Lengkap"
+                    required
+                />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Nama Panggilan</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    placeholder="Nama Panggilan Anda"
+                    name="Nama Panggilan"
+                    required
+                />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Jenis Kelamin</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="JK" value="L" required /> Laki-laki
+                </label>
+                <label class="radio">
+                    <input type="radio" name="JK" value="P" required /> Perempuan
+                </label>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Asal Sekolah</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    placeholder="Asal Sekolah"
+                    name="Sekolah"
+                    required
+                />
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Nomor WA</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="tel"
+                    placeholder="Nomor WhatsApp Anda"
+                    name="Nomor WA"
+                    required
+                />
+            </div>
+        </div>
+        <div class="info-message">
+            <p>Halo, Selamat bergabung di Dojang Taekwondo SMASA, Informasi latihan taekwondo setiap :</p>
+            <p>🗓️ Selasa dan Jumat<br>
+               🕞 15:30 - selesai<br>
+               Bertempat di AULA SMA NEGERI 1 SORONG.
+            </p>
+            <p>Kalau Kamu belum punya Baju Taekwondo, boleh memakai baju biasa celana olahraga dulu yaa.. Nanti kalo ada rejeki boleh dibeli di toko terdekat atau dipesan. Sekali lagi Selamat Bergabung</p>
+            <p><strong>𝐒𝐚𝐥𝐚𝐦 𝐓𝐚𝐞𝐤𝐰𝐚𝐧𝐝𝐨✊🏻</strong></p>
+        </div>
+        <div class="field">
+            <label class="label">Persetujuan</label>
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" name="Agree To Terms" value="Iya" required />Sudah Di Isi Semua
+                </label>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary" type="submit" id="submit-button">Kirim</button>
+            </div>
+            <div class="control">
+                <button class="button is-danger" type="reset">Batalkan</button>
+            </div>
+        </div>
+    </form>
+    <div
+        id="message"
+        style="
+            display: none;
+            margin: 20px;
+            font-weight: bold;
+            color: green;
+            padding: 8px;
+            background-color: beige;
+            border-radius: 4px;
+            border-color: aquamarine;
+        "
+    ></div>
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+            let isValid = true;
+            const inputs = document.querySelectorAll("input[required]");
+            inputs.forEach((input) => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add("is-danger"); // Highlight empty fields
+                } else {
+                    input.classList.remove("is-danger");
+                }
+            });
+            if (!isValid) {
+                alert("Harap mengisi semua field yang diperlukan!");
+                return;
+            }
+            document.getElementById("message").textContent = "Loading...";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("submit-button").disabled = true;
+            var formData = new FormData(this);
+            var keyValuePairs = [];
+            for (var pair of formData.entries()) {
+                keyValuePairs.push(pair[0] + "=" + pair[1]);
+            }
+            var formDataString = keyValuePairs.join("&");
+            fetch(
+                "https://script.google.com/macros/s/AKfycbyEAnypIbq2-GyW37aWCwvtwhpBvDkskD-aZH3sGZNpPQu1JzL3UdZ9VpR_UtP9pSAx/exec",
+                {
+                    redirect: "follow",
+                    method: "POST",
+                    body: formDataString,
+                    headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                    },
+                }
+            )
+            .then(function (response) {
+                if (response) {
+                    return response; 
+                } else {
+                    throw new Error("Failed to submit the form.");
+                }
+            })
+            .then(function (data) {
+                document.getElementById("message").textContent = "Data Berhasil Terkirim!";
+                document.getElementById("message").style.display = "block";
+                document.getElementById("message").style.backgroundColor = "green";
+                document.getElementById("message").style.color = "beige";
+                document.getElementById("submit-button").disabled = false;
+                document.getElementById("form").reset();
+                setTimeout(function () {
+                    document.getElementById("message").textContent = "";
+                    document.getElementById("message").style.display = "none";
+                }, 2600);
+            })
+            .catch(function (error) {
+                console.error(error);
+                document.getElementById("message").textContent = "Terjadi kesalahan saat mengirimkan formulir. Coba Beberapa Saat Lagi";
+                document.getElementById("message").style.display = "block";
+                document.getElementById("submit-button").disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sejarah</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .folder {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .folder:hover {
+            background-color: #333;
+        }
+        .folder svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .folder-label {
+            font-size: 18px;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        video {
+            width: 100%;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1>SEJARAH</h1>
+
+        <!-- Halaman utama -->
+        <div class="folder" id="documentasiHarian" onclick="showFolders('documentasiHarian')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+            </svg>
+            <span class="folder-label">Documentasi Harian</span>
+        </div>
+        <div class="folder" id="tugas" onclick="showFolders('tugas')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+            </svg>
+            <span class="folder-label">Aktivitas Harian</span>
+        </div>
+
+        <!-- Halaman Documentasi Harian atau Tugas dengan daftar folder -->
+        <div id="folderList" class="hidden">
+            <!-- Tombol kembali dalam bentuk folder -->
+            <div class="folder" onclick="goBack()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                </svg>
+                <span class="folder-label">...</span>
+            </div>
+
+            <!-- Daftar folder dinamis untuk Documentasi Harian atau Tugas -->
+            <div id="dynamicFolders"></div>
+        </div>
+
+        <!-- Halaman konten dengan foto dan video -->
+        <div id="contentPage" class="hidden">
+            <!-- Tombol kembali dalam bentuk folder -->
+            <div class="folder" onclick="goToFolders()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                </svg>
+                <span class="folder-label">Kembali</span>
+            </div>
+
+            <!-- Tempat untuk konten foto dan video -->
+            <div id="contentArea">
+                <!-- Konten dinamis akan ditampilkan di sini -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data untuk folder "Documentasi Harian" dengan tautan video dan gambar masing-masing folder
+        const documentasiHarianFolders = [
+            { date: "12-10-2024", label: "Sab, 12-10-2024", image: "image1.jpg", video: "video1.mp4" },
+            { date: "19-10-2024", label: "Sab, 19-10-2024", image: "image2.jpg", video: "video2.mp4" },
+            { date: "26-10-2024", label: "Sab, 26-10-2024", image: "image3.jpg", video: "video3.mp4" },
+            { date: "02-11-2024", label: "Sab, 02-11-2024", image: "image4.jpg", video: "video4.mp4" },
+            { date: "09-11-2024", label: "Sab, 09-11-2024", image: "image5.jpg", video: "video5.mp4" }
+        ];
+
+        // Data untuk folder "Tugas" dengan subfolder
+        const tugasFolders = [
+            {
+                name: "Catatan",
+                subfolders: [
+                    { label: "Folder belum", href: "catatan1.html" },
+                    { label: "Folder 18-06-2024", href: "catatan2.html" },
+                    { label: "Folder belum", href: "catatan3.html" },
+                    { label: "Folder 18-09-2024", href: "catatan4.html" },
+                    { label: "Folder belum", href: "catatan5.html" }
+                ]
+            },
+            {
+                name: "Tugas Sekolah(Rumah)",
+                subfolders: [
+                    { label: "Folder belum", href: "tugas1.html" },
+                    { label: "Folder 18-06-2024", href: "tugas2.html" },
+                    { label: "Folder belum", href: "tugas3.html" },
+                    { label: "Folder 18-09-2024", href: "tugas4.html" },
+                    { label: "Folder belum", href: "tugas5.html" }
+                ]
+            },
+            {
+                name: "Tugas Video",
+                subfolders: [
+                    { label: "Folder belum", href: "video1.html" },
+                    { label: "Folder 18-06-2024", href: "video2.html" },
+                    { label: "Folder belum", href: "video3.html" },
+                    { label: "Folder 18-09-2024", href: "video4.html" },
+                    { label: "Folder belum", href: "video5.html" }
+                ]
+            }
+        ];
+
+        // Menampilkan daftar folder berdasarkan kategori
+        function showFolders(type) {
+            const folderList = document.getElementById("folderList");
+            const dynamicFolders = document.getElementById("dynamicFolders");
+            dynamicFolders.innerHTML = ""; 
+
+            if (type === 'documentasiHarian') {
+                documentasiHarianFolders.forEach(folder => {
+                    const folderDiv = document.createElement('div');
+                    folderDiv.className = 'folder';
+                    folderDiv.onclick = () => showContent(folder.date, folder.image, folder.video);
+                    folderDiv.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                        </svg>
+                        <span class="folder-label">${folder.label}</span>
+                    `;
+                    dynamicFolders.appendChild(folderDiv);
+                });
+            } else if (type === 'tugas') {
+                tugasFolders.forEach(folder => {
+                    const folderDiv = document.createElement('div');
+                    folderDiv.className = 'folder';
+                    folderDiv.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                        </svg>
+                        <span class="folder-label">${folder.name}</span>
+                    `;
+                    folderDiv.onclick = () => showSubfolders(folder.subfolders); 
+                    dynamicFolders.appendChild(folderDiv);
+                });
+            }
+
+            document.getElementById("documentasiHarian").style.display = "none";
+            document.getElementById("tugas").style.display = "none";
+            folderList.classList.remove("hidden");
+        }
+
+        function showSubfolders(subfolders) {
+            const dynamicFolders = document.getElementById("dynamicFolders");
+            dynamicFolders.innerHTML = ""; 
+
+            subfolders.forEach(subfolder => {
+                const subfolderDiv = document.createElement('div');
+                subfolderDiv.className = 'folder';
+                subfolderDiv.innerHTML = `
+                    <a href="${subfolder.href}">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                        </svg>
+                        <span class="folder-label">${subfolder.label}</span>
+                    </a>
+                `;
+                dynamicFolders.appendChild(subfolderDiv);
+            });
+        }
+
+        // Menampilkan konten foto dan video berdasarkan folder yang diklik
+        function showContent(date, image, video) {
+            const contentPage = document.getElementById("contentPage");
+            const contentArea = document.getElementById("contentArea");
+            contentArea.innerHTML = `<h2>Konten untuk ${date}</h2>
+                <img src="${image}" alt="Gambar untuk ${date}" onclick="openModal(this.src)">
+                <video controls src="${video}"></video>`;
+            contentPage.classList.remove("hidden");
+            document.getElementById("folderList").classList.add("hidden");
+        }
+
+        function openModal(src) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <span class="modal-close" onclick="closeModal(this)">×</span>
+                <img class="modal-content" src="${src}" alt="Gambar Besar">
+            `;
+            document.body.appendChild(modal);
+            modal.style.display = 'block';
+        }
+
+        function closeModal(element) {
+            const modal = element.parentElement;
+            modal.style.display = 'none';
+            document.body.removeChild(modal);
+        }
+
+        function goBack() {
+            document.getElementById("folderList").classList.add("hidden");
+            document.getElementById("documentasiHarian").style.display = "block";
+            document.getElementById("tugas").style.display = "block";
+        }
+
+        function goToFolders() {
+            document.getElementById("contentPage").classList.add("hidden");
+            document.getElementById("folderList").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>

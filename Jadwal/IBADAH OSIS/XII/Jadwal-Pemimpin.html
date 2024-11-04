@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jadwal ibadah OSIS Kelas XII.">
+    <title>Tabel Kegiatan</title>
+    <style>
+        body {
+            font-size: 10px; /* Ukuran font untuk teks di seluruh halaman */
+            margin: 0; /* Remove default margin */
+            position: relative; /* For positioning */
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+        }
+        /* Video Background */
+        .video-background {
+            position: fixed; /* Use fixed positioning */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            z-index: -1; /* Send video behind content */
+            object-fit: cover; /* Cover entire viewport */
+        }
+        header {
+            position: relative;
+            text-align: center; /* Center align the title */
+            padding: 5px 0; /* Increased padding for a thicker header */
+            background-color: rgba(249, 249, 249, 0.7); /* Transparent background */
+            border-bottom: 3px solid rgba(255, 255, 255, 0.8); /* Thicker and lighter bottom border for separation */
+            backdrop-filter: blur(80px); /* Optional: Add blur effect behind the header for better visibility */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
+        }
+        .logo-left {
+            position: absolute; /* Positioning the left logo */
+            top: 6px;
+            left: 9px;
+            width: 43px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .logo-right {
+            position: absolute; /* Positioning the right logo */
+            top: 7px;
+            right: 8px;
+            width: 45px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        h3 {
+          margin-top: 20px;
+          margin-bottom: 5px;
+          color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 6px; /* Ukuran font khusus untuk tabel */
+            margin-top: 10px; /* Add margin to create space below the header */
+            position: relative; /* Position relative for z-index */
+            z-index: 1; /* Keep table above video */
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Padding yang lebih kecil */
+            text-align: center; /* Menyusun teks di tengah */
+        }
+        th {
+            background-color: #df81ef;
+        }
+        td {
+            background-color: #eecff3;
+        }
+        .check {
+            color: green;
+            font-weight: bold;
+        }
+        .cross {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Video Background -->
+<video autoplay loop muted class="video-background">
+    <source src="../../../Gambar/112.mp4" type="video/mp4"> <!-- Replace with your video file path -->
+    Your browser does not support the video tag.
+</video>
+
+<header>
+    <!-- Logo on the left -->
+    <img src="../../../Gambar/1.png" alt="Logo Kiri" class="logo-left"> <!-- Replace with your left logo URL -->
+
+    <!-- Logo on the right -->
+    <img src="../../../Gambar/2.png" alt="Logo Kanan" class="logo-right"> <!-- Replace with your right logo URL -->
+
+    <h2>Jadwal Ibadah OSIS KELAS XII</h2>
+</header>
+
+<h3>Tahun Ajaran 2024</h3>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Hari/Tgl</th>
+            <th scope="col">Puji-Pujian</th>
+            <th scope="col">Liturgi</th>
+            <th scope="col">Persembahan</th>
+            <th scope="col">Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Jum, 01 November 2024</td>
+            <td>XII IPS 3</td>
+            <td>XII IPS 3</td>
+            <td>XII IPS 3</td>
+            <td class="check">✓</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Jum, 08 November 2024</td>
+            <td>XII IPS 4</td>
+            <td>XII IPS 4</td>
+            <td>XII IPS 4</td>
+            <td class="check"></td>
+        </tr>
+        <tr>
+            <td colspan="6">Di Update Hari Sabtu Atau Hari Minggu ...</td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

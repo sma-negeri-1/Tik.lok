@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+</head>
+<body>
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">Data Ulang Eskul</h1>
+            </div>
+        </div>
+    </section>
+    <form id="form" class="container m-4 pl-4">
+        <!-- Nama Lengkap -->
+        <div class="field">
+            <label class="label">Nama Lengkap</label>
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    placeholder="Nama Lengkap Anda"
+                    name="Nama Lengkap"
+                    required
+                />
+            </div>
+        </div>
+
+        <!-- Kelas -->
+        <div class="field">
+            <label class="label">Kelas</label>
+            <div class="control">
+                <div class="select is-fullwidth"> <!-- Menambahkan kelas is-fullwidth -->
+                    <select name="Kelas" required>
+                        <option value="" disabled selected>Pilih Kelas</option>
+                        <option value="X A">X A</option>
+                        <option value="X B">X B</option>
+                        <option value="X C">X C</option>
+                        <option value="X D">X D</option>
+                        <option value="X E">X E</option>
+                        <option value="X F">X F</option>
+                        <option value="X G">X G</option>
+                        <option value="X H">X H</option>
+                        <option value="X I">X I</option>
+                        <option value="X J">X J</option>
+                        <option value="XI A1">XI A1</option>
+                        <option value="XI A2">XI A2</option>
+                        <option value="XI A3">XI A3</option>
+                        <option value="XI B1">XI B1</option>
+                        <option value="XI B2">XI B2</option>
+                        <option value="XI C1">XI C1</option>
+                        <option value="XI C2">XI C2</option>
+                        <option value="XI C3">XI C3</option>
+                        <option value="XI C4">XI C4</option>
+                        <option value="XI D">XI D</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jenis Kelamin -->
+        <div class="field">
+            <label class="label">Jenis Kelamin</label>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="JK" value="L" required /> Laki-laki
+                </label>
+                <label class="radio">
+                    <input type="radio" name="JK" value="P" required /> Perempuan
+                </label>
+            </div>
+        </div>
+
+        <!-- Pilih Geup -->
+        <div class="field">
+            <label class="label">Pilih Geup</label>
+            <div class="control">
+                <div class="select is-fullwidth"> <!-- Menambahkan kelas is-fullwidth -->
+                    <select name="Geup" required>
+                        <option value="" disabled selected>Pilih Geup</option>
+                        <option value="10">Geup 10</option>
+                        <option value="9">Geup 9</option>
+                        <option value="8">Geup 8</option>
+                        <option value="7">Geup 7</option>
+                        <option value="6">Geup 6</option>
+                        <option value="5">Geup 5</option>
+                        <option value="4">Geup 4</option>
+                        <option value="3">Geup 3</option>
+                        <option value="2">Geup 2</option>
+                        <option value="1">Geup 1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Persetujuan -->
+        <div class="field">
+            <label class="label">Persetujuan</label>
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" name="Agree To Terms" required /> Saya Sudah Mengisi Data Saya
+                </label>
+            </div>
+        </div>
+
+        <!-- Submit & Reset Buttons -->
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary" type="submit" id="submit-button">Kirim</button>
+            </div>
+            <div class="control">
+                <button class="button is-danger" type="reset">Batalkan</button>
+            </div>
+        </div>
+    </form>
+    <div
+        id="message"
+        style="
+            display: none;
+            margin: 20px;
+            font-weight: bold;
+            color: green;
+            padding: 8px;
+            background-color: beige;
+            border-radius: 4px;
+            border-color: aquamarine;
+        "
+    ></div>
+
+    <script>
+        document.getElementById("form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            let data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch("YOUR_DEPLOYMENT_URL", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("message").textContent = "Data Berhasil Terkirim!";
+                document.getElementById("message").style.display = "block";
+                document.getElementById("form").reset();
+                setTimeout(() => {
+                    document.getElementById("message").style.display = "none";
+                }, 2600);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                document.getElementById("message").textContent = "Terjadi kesalahan saat mengirimkan formulir. Coba Beberapa Saat Lagi";
+                document.getElementById("message").style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>

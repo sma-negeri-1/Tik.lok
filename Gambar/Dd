@@ -1,0 +1,489 @@
+    <audio id="myAudio" autoplay muted>
+        <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        var audio = document.getElementById('myAudio');
+
+        // Event listener untuk mendeteksi klik tombol Admin
+        document.getElementById('adminBtn').addEventListener('click', function(event) {
+            audio.muted = false;  // Mengaktifkan audio
+            audio.play();          // Memastikan audio diputar
+            event.stopPropagation(); // Menghentikan event agar tidak tertangkap oleh document
+        });
+
+        // Event listener untuk menghentikan audio saat klik pada tombol lain
+        document.getElementById('memberBtn').addEventListener('click', function() {
+            audio.pause();        // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+        });
+
+        // Mencegah pengiriman form untuk demo
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+        });
+    </script>
+<script>
+        var audio = document.getElementById('myAudio');
+
+        // Fungsi untuk memutar lagu baru
+        function playAudio(src) {
+            audio.pause();  // Menghentikan audio yang sedang diputar
+            audio.currentTime = 0;  // Mengatur ulang waktu audio
+            audio.src = src;  // Mengganti sumber audio
+            audio.load();  // Memuat sumber audio yang baru
+            audio.play();  // Memainkan audio yang baru
+            audio.muted = false;  // Menonaktifkan mute
+        }
+
+        // Event listener untuk tombol pertama
+        document.getElementById('memberBtn').addEventListener('click', function() {
+            playAudio('Gambar/Member.mp3');  // Ganti 'song1.mp3' dengan jalur audio pertama Anda
+        });
+
+        // Event listener untuk tombol kedua
+        document.getElementById('adminBtn').addEventListener('click', function() {
+            playAudio('Gambar/Admin.mp3');  // Ganti 'song2.mp3' dengan jalur audio kedua Anda
+        });
+
+        // Event listener untuk tombol Login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Mencegah form dikirimkan
+            audio.pause();  // Menghentikan audio yang sedang diputar
+            audio.currentTime = 0;  // Mengatur waktu audio kembali ke awal
+            
+        });
+
+        // Event listener untuk menghentikan audio ketika pengguna menutup tab atau pindah tab
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                audio.pause();  // Menghentikan audio jika tab tidak aktif
+            }
+        });
+
+        // Event listener untuk menghentikan audio saat pengguna menutup halaman
+        window.addEventListener('beforeunload', function() {
+            audio.pause();  // Menghentikan audio jika pengguna menutup tab atau keluar dari halaman
+        });
+    </script>
+    
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Sign Up</title>
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    height: 94vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1; /* Menempatkan video di belakang konten */
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.login-box {
+    text-align: center;
+}
+
+.login-header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.login-header button {
+    background-color: #ff5353;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-header button.active {
+    background-color: #ff5353;
+    color: black;
+}
+
+.login-header button:hover {
+    background-color: #c20101;
+    color: white;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.input-field {
+    margin-bottom: 20px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #6edb03;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #427f06;
+}
+
+.social-login {
+    margin-top: 30px;
+}
+
+.social-login a {
+    margin: 0 22px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.social-login a:hover {
+    color: #ddd;
+}
+
+.error-message {
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+ #memberCountdown, #adminCountdown {
+      color: #ffffff; /* Mengatur warna teks menjadi merah */
+      font-weight: bold; /* Membuat teks menjadi tebal */
+      margin-top: 5px; /* Menambahkan sedikit jarak di atas teks */
+  }
+
+/* Animation for form transition */
+.login-form {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.login-form.show {
+    opacity: 1;
+}
+</style>
+</head>
+<body>
+    
+  <video autoplay loop muted class="background-video">
+        <source src="Gambar/111.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+<div class="container">
+        <div class="login-box">
+            <div class="login-header">
+                <button id="memberBtn" class="active">Member</button>
+                <button id="adminBtn">Admin</button>
+            </div>
+
+            <!-- Member Form (No Username Field) -->
+            <div class="login-form" id="memberForm">
+                <h2>Member Login</h2>
+                <form id="memberLoginForm">
+                    <div class="input-field">
+                        <input type="number" id="memberPassword" placeholder="Kode Aktivasi" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                    <p id="memberError"></p>
+                    <p id="memberCountdown"></p>
+                    <div class="social-login">
+                        <!-- TikTok SVG -->
+                        <a href="https://www.tiktok.com/@j.e.k66?_t=8qI33q2WidG&_r=1" target="_blank">
+                            <svg fill="#000000" width="26px" height="26px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2Zm-3.281,8.725h0c-.109.011-.219.016-.328.017A3.571,3.571,0,0,1,14.4,9.129v5.493a4.061,4.061,0,1,1-4.06-4.06c.085,0,.167.008.251.013v2a2.067,2.067,0,1,0-.251,4.119A2.123,2.123,0,0,0,12.5,14.649l.02-.05V6.879a6.149,6.149,0,0,0,4.2,1.735l.019,2.082a1.154,1.154,0,0,0,.2-.026h.001a4.053,4.053,0,0,0,.78-.167v2.221Z"/>
+                            </svg>
+                        </a>
+                        <!-- WhatsApp SVG -->
+                        <a href="https://wa.me/6281245887945/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
+    <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z"></path>
+</svg>
+                        </a>
+                        <!-- YouTube SVG -->
+                        <a href="https://youtube.com/@my_jek?si=lLBmI-V_iqlFY-vC" target="_blank">
+                            <svg fill="#000000" height="26px" width="26px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.5 6.79c-.27-1.13-1.19-2.02-2.33-2.31C19.25 4 12 4 12 4s-7.25 0-9.17.48C1.69 4.76.77 5.66.5 6.79.07 8.75 0 12 0 12s.07 3.25.5 5.21c.27 1.13 1.19 2.02 2.33 2.31 1.92.48 9.17.48 9.17.48s7.25 0 9.17-.48c1.14-.29 2.06-1.18 2.33-2.31.43-1.96.5-5.21.5-5.21s-.07-3.25-.5-5.21zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Admin Form (Includes Username Field) -->
+            <div class="login-form" id="adminForm" style="display: none;">
+                <h2>Admin Login</h2>
+                <form id="adminLoginForm">
+                    <div class="input-field">
+                        <input type="text" id="adminUsername" placeholder="Username" required>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="adminPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                    <p id="adminError"></p>
+                    <p id="adminCountdown"></p>
+                    
+                    <!-- Social Media Icons -->
+                    <div class="social-login">
+                        <!-- TikTok SVG -->
+                        <a href="https://www.tiktok.com/@j.e.k66?_t=8qI33q2WidG&_r=1" target="_blank">
+                            <svg fill="#000000" width="26px" height="26px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2Zm-3.281,8.725h0c-.109.011-.219.016-.328.017A3.571,3.571,0,0,1,14.4,9.129v5.493a4.061,4.061,0,1,1-4.06-4.06c.085,0,.167.008.251.013v2a2.067,2.067,0,1,0-.251,4.119A2.123,2.123,0,0,0,12.5,14.649l.02-.05V6.879a6.149,6.149,0,0,0,4.2,1.735l.019,2.082a1.154,1.154,0,0,0,.2-.026h.001a4.053,4.053,0,0,0,.78-.167v2.221Z"/>
+                            </svg>
+                        </a>
+                        <!-- WhatsApp SVG -->
+                        <a href="https://wa.me/6281245887945/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 50 50">
+    <path d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z"></path>
+</svg>
+                        </a>
+                        <!-- YouTube SVG -->
+                        <a href="https://youtube.com/@my_jek?si=lLBmI-V_iqlFY-vC" target="_blank">
+                            <svg fill="#000000" height="26px" width="26px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.5 6.79c-.27-1.13-1.19-2.02-2.33-2.31C19.25 4 12 4 12 4s-7.25 0-9.17.48C1.69 4.76.77 5.66.5 6.79.07 8.75 0 12 0 12s.07 3.25.5 5.21c.27 1.13 1.19 2.02 2.33 2.31 1.92.48 9.17.48 9.17.48s7.25 0 9.17-.48c1.14-.29 2.06-1.18 2.33-2.31.43-1.96.5-5.21.5-5.21s-.07-3.25-.5-5.21zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <audio id="myAudio" autoplay muted>
+        <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+<script>
+  const memberBtn = document.getElementById('memberBtn');
+  const adminBtn = document.getElementById('adminBtn');
+  const memberForm = document.getElementById('memberForm');
+  const adminForm = document.getElementById('adminForm');
+  const memberLoginForm = document.getElementById('memberLoginForm');
+  const adminLoginForm = document.getElementById('adminLoginForm');
+  let memberAttempts = 0;  // Track member login attempts
+  let adminAttempts = 0;   // Track admin login attempts
+  const MAX_ATTEMPTS = 6;
+  const LOCKOUT_DURATION = 300; // 300 seconds or 5 minutes
+
+  const memberPasswords = {
+      "12": "Jadwal/IBADAH OSIS/X/Jadwal-Pemimpin.html",
+      "23": "Jadwal/IBADAH OSIS/XI/Jadwal-Pemimpin.html",
+      "37": "Jadwal/IBADAH OSIS/XII/Jadwal-Pemimpin.html",
+      "081": "Mapel/Bahasa Indonesia/B.Indonesia.html"
+      "08": "Mapel/Sejarah/Sejarah.html"
+      "000008": "Pendaftaraan/Pendaftaraan.html"
+  };
+
+  const adminCredentials = {
+      "SMANSA": { password: "0001", link: "SMANSA/Sejarah/Sejarah.html" },
+      "B.INDO": { password: "0061", link: "SMANSA/Bahasa Indonesia/B.Indonesia.html" },
+      "admin3": { password: "passwordAdmin3", link: "halamanAdmin3.html" },
+      "admin4": { password: "passwordAdmin4", link: "halamanAdmin4.html" }
+  };
+
+  function toggleForms(activeBtn, inactiveBtn, showForm, hideForm) {
+      activeBtn.classList.add('active');
+      inactiveBtn.classList.remove('active');
+      hideForm.classList.remove('show');
+      setTimeout(() => {
+          hideForm.style.display = 'none';
+          showForm.style.display = 'block';
+          setTimeout(() => showForm.classList.add('show'), 50);  
+      }, 500);
+  }
+
+  memberBtn.addEventListener('click', () => toggleForms(memberBtn, adminBtn, memberForm, adminForm));
+  adminBtn.addEventListener('click', () => toggleForms(adminBtn, memberBtn, adminForm, memberForm));
+
+  function lockout(btn, countdownElement, errorElement) {
+      btn.disabled = true;
+      let remainingTime = LOCKOUT_DURATION;
+      
+      const countdownInterval = setInterval(() => {
+          if (remainingTime <= 0) {
+              clearInterval(countdownInterval);
+              countdownElement.textContent = '';
+              btn.disabled = false;
+              errorElement.textContent = '';
+          } else {
+              countdownElement.textContent = `Coba lagi dalam ${remainingTime} S`;
+              remainingTime--;
+          }
+      }, 1000);
+  }
+
+  function validateMemberLogin(inputPassword, errorElement, countdownElement, btn) {
+      if (memberPasswords.hasOwnProperty(inputPassword)) {
+          errorElement.textContent = "Login berhasil!";
+          errorElement.style.color = '#9aff9a';
+          setTimeout(() => {
+              window.location.href = memberPasswords[inputPassword];
+          }, 1000); 
+      } else {
+          memberAttempts++;
+          errorElement.textContent = `Password salah. Coba lagi. Percobaan tersisa: ${MAX_ATTEMPTS - memberAttempts}`;
+          errorElement.style.color = '#ffffff';
+          if (memberAttempts >= MAX_ATTEMPTS) {
+              errorElement.textContent = "Terlalu banyak percobaan. Tunggu 5 menit untuk mencoba lagi.";
+              lockout(btn, countdownElement, errorElement);
+          }
+      }
+  }
+
+  function validateAdminLogin(inputUsername, inputPassword, errorElement, countdownElement, btn) {
+      if (adminCredentials.hasOwnProperty(inputUsername) && adminCredentials[inputUsername].password === inputPassword) {
+          errorElement.textContent = "Login Admin berhasil!";
+          errorElement.style.color = '#9aff9a';
+          setTimeout(() => {
+              window.location.href = adminCredentials[inputUsername].link;
+          }, 1000); 
+      } else {
+          adminAttempts++;
+          errorElement.textContent = `Username atau password salah. Percobaan tersisa: ${MAX_ATTEMPTS - adminAttempts}`;
+          errorElement.style.color = '#ffffff';
+          if (adminAttempts >= MAX_ATTEMPTS) {
+              errorElement.textContent = "Terlalu banyak percobaan. Tunggu 5 menit untuk mencoba lagi.";
+              lockout(btn, countdownElement, errorElement);
+          }
+      }
+  }
+
+  // Handle member login attempts
+  memberLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const password = document.getElementById('memberPassword').value;
+      const errorElement = document.getElementById('memberError');
+      const countdownElement = document.getElementById('memberCountdown');
+      const btn = e.submitter;
+      if (memberAttempts < MAX_ATTEMPTS) {
+          validateMemberLogin(password, errorElement, countdownElement, btn);
+      }
+  });
+
+  // Handle admin login attempts
+  adminLoginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const username = document.getElementById('adminUsername').value;
+      const password = document.getElementById('adminPassword').value;
+      const errorElement = document.getElementById('adminError');
+      const countdownElement = document.getElementById('adminCountdown');
+      const btn = e.submitter;
+      if (adminAttempts < MAX_ATTEMPTS) {
+          validateAdminLogin(username, password, errorElement, countdownElement, btn);
+      }
+  });
+</script>
+<script>
+        var audio = document.getElementById('myAudio');
+
+        // Event listener untuk mendeteksi klik tombol Admin
+        document.getElementById('adminBtn').addEventListener('click', function(event) {
+            audio.muted = false;  // Mengaktifkan audio
+            audio.play();          // Memastikan audio diputar
+            event.stopPropagation(); // Menghentikan event agar tidak tertangkap oleh document
+        });
+
+        // Event listener untuk menghentikan audio saat klik pada tombol lain
+        document.getElementById('memberBtn').addEventListener('click', function() {
+            audio.pause();        // Menghentikan audio
+            audio.currentTime = 0; // Mengatur waktu audio kembali ke awal
+        });
+
+        // Mencegah pengiriman form untuk demo
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+        });
+    </script>
+<script>
+        var audio = document.getElementById('myAudio');
+
+        // Fungsi untuk memutar lagu baru
+        function playAudio(src) {
+            audio.pause();  // Menghentikan audio yang sedang diputar
+            audio.currentTime = 0;  // Mengatur ulang waktu audio
+            audio.src = src;  // Mengganti sumber audio
+            audio.load();  // Memuat sumber audio yang baru
+            audio.play();  // Memainkan audio yang baru
+            audio.muted = false;  // Menonaktifkan mute
+        }
+
+        // Event listener untuk tombol pertama
+        document.getElementById('memberBtn').addEventListener('click', function() {
+            playAudio('Gambar/Member.mp3');  // Ganti 'song1.mp3' dengan jalur audio pertama Anda
+        });
+
+        // Event listener untuk tombol kedua
+        document.getElementById('adminBtn').addEventListener('click', function() {
+            playAudio('Gambar/Admin.mp3');  // Ganti 'song2.mp3' dengan jalur audio kedua Anda
+        });
+
+        // Event listener untuk tombol Login
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Mencegah form dikirimkan
+            audio.pause();  // Menghentikan audio yang sedang diputar
+            audio.currentTime = 0;  // Mengatur waktu audio kembali ke awal
+            
+        });
+
+        // Event listener untuk menghentikan audio ketika pengguna menutup tab atau pindah tab
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                audio.pause();  // Menghentikan audio jika tab tidak aktif
+            }
+        });
+
+        // Event listener untuk menghentikan audio saat pengguna menutup halaman
+        window.addEventListener('beforeunload', function() {
+            audio.pause();  // Menghentikan audio jika pengguna menutup tab atau keluar dari halaman
+        });
+    </script>
+
+</body>
+</html>

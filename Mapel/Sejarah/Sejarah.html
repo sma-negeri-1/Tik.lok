@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sejarah</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .folder {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .folder:hover {
+            background-color: #333;
+        }
+        .folder svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .folder-label {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <h1>SEJARAH</h1>
+
+        <!-- Halaman utama -->
+        <div class="folder" onclick="location.href='Sejarah1.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+            </svg>
+            <span class="folder-label">Documentasi Harian</span>
+        </div>
+        <div class="folder" onclick="location.href='Sejarah2.html'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+            </svg>
+            <span class="folder-label">Aktivitas Harian</span>
+        </div>
+    </div>
+</body>
+</html>

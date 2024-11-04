@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .folder {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .folder:hover {
+            background-color: #333;
+        }
+        .folder svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .folder-label {
+            font-size: 18px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #FFA000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #ff8f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aktivitas Harian</h1>
+        <div id="dynamicFolders"></div>
+        <button onclick="goBack()" class="back-button">Kembali</button>
+    </div>
+
+    <script>
+        // Data untuk folder tugas
+        const tugasFolders = [
+            { name: "Catatan", href: "Sejarah2.1.html" },
+            { name: "Tugas Rumah", href: "Sejarah2.2.html" },
+            { name: "Tugas Video", href: "Sejarah2.3.html" }
+        ];
+
+        // Menampilkan daftar folder tugas
+        tugasFolders.forEach(folder => {
+            const folderDiv = document.createElement('div');
+            folderDiv.className = 'folder';
+            folderDiv.innerHTML = `
+                <a href="${folder.href}" style="color: white; text-decoration: none; flex-grow: 1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="#FFA000" d="M10 4H2v16h20V6H12l-2-2z"/>
+                    </svg>
+                    <span class="folder-label">${folder.name}</span>
+                </a>
+            `;
+            document.getElementById("dynamicFolders").appendChild(folderDiv);
+        });
+
+        function goBack() {
+            window.location.href = 'Sejarah.html';
+        }
+    </script>
+</body>
+</html>
