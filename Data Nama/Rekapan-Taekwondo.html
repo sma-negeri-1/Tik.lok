@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jadwal ibadah OSIS Kelas X.">
+    <title>Tabel Kegiatan</title>
+    <style>
+        body {
+            font-size: 10px; /* Ukuran font untuk teks di seluruh halaman */
+            margin: 0; /* Remove default margin */
+            position: relative; /* For positioning */
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+        }
+        /* Video Background */
+        .video-background {
+            position: fixed; /* Use fixed positioning */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            z-index: -1; /* Send video behind content */
+            object-fit: cover; /* Cover entire viewport */
+        }
+        header {
+            position: relative;
+            text-align: center; /* Center align the title */
+            padding: 5px 0; /* Increased padding for a thicker header */
+            background-color: rgba(249, 249, 249, 0.7); /* Transparent background */
+            border-bottom: 3px solid rgba(255, 255, 255, 0.8); /* Thicker and lighter bottom border for separation */
+            backdrop-filter: blur(80px); /* Optional: Add blur effect behind the header for better visibility */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for depth */
+        }
+        .logo-left {
+            position: absolute; /* Positioning the left logo */
+            top: 2px;
+            left: 9px;
+            width: 43px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .logo-right {
+            position: absolute; /* Positioning the right logo */
+            top: 3px;
+            right: 8px;
+            width: 44px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        h4 {
+          margin-top: 20px;
+          margin-bottom: 5px;
+          color: #fff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 6px; /* Ukuran font khusus untuk tabel */
+            margin-top: 10px; /* Add margin to create space below the header */
+            position: relative; /* Position relative for z-index */
+            z-index: 1; /* Keep table above video */
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px; /* Padding yang lebih kecil */
+            text-align: center; /* Menyusun teks di tengah */
+        }
+        th {
+            background-color: #c5c5c5;
+        }
+        .green {
+            background-color: #73ff3e;
+        }
+        .blue {
+            background-color: #3e71ff;
+        }
+        .yellow {
+            background-color: #fdff3e;
+        }
+        .red {
+            background-color: #ff3e3e;
+        }
+        
+        td {
+            background-color: #ffffff;
+        }
+        
+        .Hijau {
+            background-color: #8bff6171;
+        }
+        .Biru {
+            background-color: #6161ff71;
+        }
+        .Kuning {
+            background-color: #fffd6171;
+        }
+        .Merah {
+            background-color: #ff616171;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Video Background -->
+<video autoplay loop muted class="video-background">
+    <source src="../../../Gambar/112.mp4" type="video/mp4"> <!-- Replace with your video file path -->
+    Your browser does not support the video tag.
+</video>
+
+<header>
+    <!-- Logo on the left -->
+    <img src="../../../Sabeum/Dokumentasi/Logo.png" alt="Logo Kiri" class="logo-left"> <!-- Replace with your left logo URL -->
+
+    <!-- Logo on the right -->
+    <img src="../../../Gambar/2.png" alt="Logo Kanan" class="logo-right"> <!-- Replace with your right logo URL -->
+
+    <h3>Rekapan Taekwondo Smansa</h3>
+</header>
+
+<h4>Bulan Agustus-November</h4>
+<table>
+    <thead>
+        <tr>
+            <th rowspan="2">No.</th>
+            <th rowspan="2">Nama-nama</th>
+            <th rowspan="2">Kelas</th>
+            <th rowspan="2">JK</th>
+            <th colspan="4">Keterangan</th>
+        </tr>
+        <tr>
+            <th class="green">H</th>
+            <th class="blue">I</th>
+            <th class="yellow">S</th>
+            <th class="red">A</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Alexandro Rafael Aditya Luturdas</td>
+            <td>X A</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>YANWARIUS NAUW</td>
+            <td>X A</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Junike Ritce Paa</td>
+            <td>X B</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Maria Baru</td>
+            <td>X B</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Dirgahayu Putra Arafa</td>
+            <td>X E</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Yohanes Samuel Pedai</td>
+            <td>X E</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>MARYAM HERO HEIPON</td>
+            <td>X F</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Abdu Rahman Pelu</td>
+            <td>X H</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Genoveva Vincensia Welerubun</td>
+            <td>XI A1</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Rasya Ramadhan Aldjokdja</td>
+            <td>XI A1</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>Valen Miracel Punuh</td>
+            <td>XI A1</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>Herman Gabriel Fonataba</td>
+            <td>XI A2</td>
+            <td>L</td>
+            <td class="Hijau">26</td>
+            <td class="Biru">1</td>
+            <td class="Kuning">0</td>
+            <td class="Merah">0</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>MUHAMMAD AKMAL SURYANTO</td>
+            <td>XI A3</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>ALBERTD KAPITAN LAUT</td>
+            <td>XI B1</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>NYOMAN JUNIOR MALAIMOY</td>
+            <td>XI B1</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>Praniko Parpungan Simaremare</td>
+            <td>XI B1</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>RIDO SELANNO</td>
+            <td>XI B1</td>
+            <td>L</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>YULIA RENI YARANGGA</td>
+            <td>XI D</td>
+            <td>P</td>
+            <td class="Hijau"></td>
+            <td class="Biru"></td>
+            <td class="Kuning"></td>
+            <td class="Merah"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
